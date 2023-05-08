@@ -1,17 +1,17 @@
 version: "3.7"
 
 services:
-  envoygateway:
-    container_name: envoygateway
-    image: ahmedalaa107/envoy:latest
-    ports:
-      - "9901:9901"
-      - "10000:10000"
-      - "10101:10101"
-    volumes:
-      - ./Envoy/envoy.yaml:/etc/envoy/envoy.yaml
-      - ./Envoy/https.crt:/etc/ssl/certs/https.crt
-      - ./Envoy/key.pem:/etc/ssl/certs/key.pem
+  # envoygateway:
+  #   container_name: envoygateway
+  #   image: ahmedalaa107/envoy:latest
+  #   ports:
+  #     - "9901:9901"
+  #     - "10000:10000"
+  #     - "10101:10101"
+  #   volumes:
+  #     - ./Envoy/envoy.yaml:/etc/envoy/envoy.yaml
+  #     - ./Envoy/https.crt:/etc/ssl/certs/https.crt
+  #     - ./Envoy/key.pem:/etc/ssl/certs/key.pem
 
   elasticsearch:
     container_name: elasticsearch
