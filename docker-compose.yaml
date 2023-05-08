@@ -60,7 +60,7 @@ services:
       - ENABLE_PARTITION_EOF=true
       - PARTITION_ASSIGNMENT_STRATEGY=CooperativeSticky
       - DOTNET_RUNNING_IN_CONTAINER=true
-      - ConnectionStrings=Server=host.docker.internal;Initial Catalog=Rega_Lookups;User ID=sa;Password=P@ssw0rd#015;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
+      - ConnectionStrings=Server=10.21.10.160;Initial Catalog=Rega_Lookups;User ID=SVC_SmartView;Password=P@ssw0rd@0111111;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
     volumes:
       - ./wwwroot/:/app/wwwroot/
 
@@ -82,7 +82,7 @@ services:
       - ENABLE_PARTITION_EOF=true
       - PARTITION_ASSIGNMENT_STRATEGY=CooperativeSticky
       - DOTNET_RUNNING_IN_CONTAINER=true
-      - ConnectionStrings=Server=host.docker.internal;Initial Catalog=Rega_OrgHierarchy;User ID=sa;Password=P@ssw0rd#015;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
+      - ConnectionStrings=Server=host.docker.internal;Initial Catalog=Rega_OrgHierarchy;User ID=SVC_SmartView;Password=P@ssw0rd@0111111;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
     volumes:
       - ./wwwroot/:/app/wwwroot/
 
@@ -104,7 +104,7 @@ services:
       - ENABLE_PARTITION_EOF=true
       - PARTITION_ASSIGNMENT_STRATEGY=CooperativeSticky
       - DOTNET_RUNNING_IN_CONTAINER=true
-      - ConnectionStrings=Server=host.docker.internal;Initial Catalog=Rega_Workspace;User ID=sa;Password=P@ssw0rd#015;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
+      - ConnectionStrings=Server=host.docker.internal;Initial Catalog=Rega_Workspace;User ID=SVC_SmartView;Password=P@ssw0rd@0111111;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
     volumes:
       - ./wwwroot/:/app/wwwroot/
 
@@ -126,7 +126,7 @@ services:
       - ENABLE_PARTITION_EOF=true
       - PARTITION_ASSIGNMENT_STRATEGY=CooperativeSticky
       - DOTNET_RUNNING_IN_CONTAINER=true
-      - ConnectionStrings=Server=host.docker.internal;Initial Catalog=Rega_News;User ID=sa;Password=P@ssw0rd#015;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
+      - ConnectionStrings=Server=host.docker.internal;Initial Catalog=Rega_News;User ID=SVC_SmartView;Password=P@ssw0rd@0111111;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
     volumes:
       - ./wwwroot/:/app/wwwroot/
   committees:
@@ -147,7 +147,7 @@ services:
       - ENABLE_PARTITION_EOF=true
       - PARTITION_ASSIGNMENT_STRATEGY=CooperativeSticky
       - DOTNET_RUNNING_IN_CONTAINER=true
-      - ConnectionStrings=Server=host.docker.internal;Initial Catalog=Rega_Committee;User ID=sa;Password=P@ssw0rd#015;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
+      - ConnectionStrings=Server=host.docker.internal;Initial Catalog=Rega_Committee;User ID=SVC_SmartView;Password=P@ssw0rd@0111111;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
     volumes:
       - ./wwwroot/:/app/wwwroot/
 
@@ -169,7 +169,7 @@ services:
       - ENABLE_PARTITION_EOF=true
       - PARTITION_ASSIGNMENT_STRATEGY=CooperativeSticky
       - DOTNET_RUNNING_IN_CONTAINER=true
-      - ConnectionStrings=Server=host.docker.internal;Initial Catalog=Rega_UserManagement;User ID=sa;Password=P@ssw0rd#015;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
+      - ConnectionStrings=Server=host.docker.internal;Initial Catalog=Rega_UserManagement;User ID=SVC_SmartView;Password=P@ssw0rd@0111111;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
     volumes:
       - ./wwwroot/:/app/wwwroot/
 
