@@ -131,7 +131,7 @@ services:
       - ./wwwroot/:/app/wwwroot/
   committees:
     container_name: committees
-    image: ahmedalaa107/committee:latest
+    image: ahmedalaa107/committees:latest
     ports:
       - 5006:80
     environment:
@@ -201,6 +201,7 @@ services:
       - ENABLE_PARTITION_EOF=true
       - PARTITION_ASSIGNMENT_STRATEGY=CooperativeSticky
       - DOTNET_RUNNING_IN_CONTAINER=true
+      - ConnectionStrings=Server=10.21.10.160;Initial Catalog=Rega_TaskManagement;User ID=SVC_SmartView;Password=P@ssw0rd@0111111;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
     volumes:
       - ./wwwroot/:/app/wwwroot/
   zookeeper:
