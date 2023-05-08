@@ -1,0 +1,232 @@
+version: "3.7"
+
+services:
+  envoygateway:
+    build: Envoy/
+    ports:
+      - "9901:9901"
+      - "10000:10000"
+      - "10101:10101"
+    volumes:
+      - ./Envoy/envoy.yaml:/etc/envoy/envoy.yaml
+      - ./Envoy/https.crt:/etc/ssl/certs/https.crt
+      - ./Envoy/key.pem:/etc/ssl/certs/key.pem
+
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+    environment:
+      - xpack.monitoring.enabled=true
+      - xpack.watcher.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:7.9.2
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    ports:
+      - "5601:5601"
+
+  # mongodb:
+  #   image: mongodb/mongodb-community-server:latest
+  #   container_name: mongodb
+  #   volumes:
+  #     - ./data:/data/db
+  #   ports:
+  #     - "27017:27017"
+
+  basicdata:
+    container_name: basicdata
+    image: docker pull ahmedalaa107/basicdata:latest
+    ports:
+      - 5002:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - BOOTSTRAP_SERVER=kafka:9092
+      - GROUP_ID=basicdataConsumer
+      - ENABLE_AUTO_OFFSET_STORE=false
+      - ENABLE_AUTO_COMMIT=true
+      - STATISTICS_INTERVAL_MS=5000
+      - SESSION_TIMEOUT_MS=6000
+      - AUTO_OFFSET_RESET=Earliest
+      - ENABLE_PARTITION_EOF=true
+      - PARTITION_ASSIGNMENT_STRATEGY=CooperativeSticky
+      - DOTNET_RUNNING_IN_CONTAINER=true
+      - ConnectionStrings=Server=host.docker.internal;Initial Catalog=Rega_Lookups;User ID=sa;Password=P@ssw0rd#015;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
+    volumes:
+      - ./wwwroot/:/app/wwwroot/
+
+  orghierarchy:
+    container_name: orghierarchy
+    image: docker pull ahmedalaa107/orghierarchy:latest
+    ports:
+      - 5003:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - BOOTSTRAP_SERVER=kafka:9092
+      - GROUP_ID=OrgConsumer
+      - ENABLE_AUTO_OFFSET_STORE=false
+      - ENABLE_AUTO_COMMIT=true
+      - STATISTICS_INTERVAL_MS=5000
+      - SESSION_TIMEOUT_MS=6000
+      - AUTO_OFFSET_RESET=Earliest
+      - ENABLE_PARTITION_EOF=true
+      - PARTITION_ASSIGNMENT_STRATEGY=CooperativeSticky
+      - DOTNET_RUNNING_IN_CONTAINER=true
+      - ConnectionStrings=Server=host.docker.internal;Initial Catalog=Rega_OrgHierarchy;User ID=sa;Password=P@ssw0rd#015;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
+    volumes:
+      - ./wwwroot/:/app/wwwroot/
+
+  workspace:
+    container_name: workspace
+    image: docker pull ahmedalaa107/workspace:latest
+    ports:
+      - 5004:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - BOOTSTRAP_SERVER=kafka:9092
+      - GROUP_ID=workspaceConsumer
+      - ENABLE_AUTO_OFFSET_STORE=false
+      - ENABLE_AUTO_COMMIT=true
+      - STATISTICS_INTERVAL_MS=5000
+      - SESSION_TIMEOUT_MS=6000
+      - AUTO_OFFSET_RESET=Earliest
+      - ENABLE_PARTITION_EOF=true
+      - PARTITION_ASSIGNMENT_STRATEGY=CooperativeSticky
+      - DOTNET_RUNNING_IN_CONTAINER=true
+      - ConnectionStrings=Server=host.docker.internal;Initial Catalog=Rega_Workspace;User ID=sa;Password=P@ssw0rd#015;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
+    volumes:
+      - ./wwwroot/:/app/wwwroot/
+
+  news:
+    container_name: news
+    image: docker pull ahmedalaa107/news:latest
+    ports:
+      - 5005:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - BOOTSTRAP_SERVER=kafka:9092
+      - GROUP_ID=newsConsumer
+      - ENABLE_AUTO_OFFSET_STORE=false
+      - ENABLE_AUTO_COMMIT=true
+      - STATISTICS_INTERVAL_MS=5000
+      - SESSION_TIMEOUT_MS=6000
+      - AUTO_OFFSET_RESET=Earliest
+      - ENABLE_PARTITION_EOF=true
+      - PARTITION_ASSIGNMENT_STRATEGY=CooperativeSticky
+      - DOTNET_RUNNING_IN_CONTAINER=true
+      - ConnectionStrings=Server=host.docker.internal;Initial Catalog=Rega_News;User ID=sa;Password=P@ssw0rd#015;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
+    volumes:
+      - ./wwwroot/:/app/wwwroot/
+  committees:
+    container_name: committees
+    image: docker pull ahmedalaa107/committee:latest
+    ports:
+      - 5006:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - BOOTSTRAP_SERVER=kafka:9092
+      - GROUP_ID=committeesConsumer
+      - ENABLE_AUTO_OFFSET_STORE=false
+      - ENABLE_AUTO_COMMIT=true
+      - STATISTICS_INTERVAL_MS=5000
+      - SESSION_TIMEOUT_MS=6000
+      - AUTO_OFFSET_RESET=Earliest
+      - ENABLE_PARTITION_EOF=true
+      - PARTITION_ASSIGNMENT_STRATEGY=CooperativeSticky
+      - DOTNET_RUNNING_IN_CONTAINER=true
+      - ConnectionStrings=Server=host.docker.internal;Initial Catalog=Rega_Committee;User ID=sa;Password=P@ssw0rd#015;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
+    volumes:
+      - ./wwwroot/:/app/wwwroot/
+
+  usermanagement:
+    container_name: usermanagement
+    image: docker pull ahmedalaa107/usermanagement:latest
+    ports:
+      - 5007:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - BOOTSTRAP_SERVER=kafka:9092
+      - GROUP_ID=userMangementConsumer
+      - ENABLE_AUTO_OFFSET_STORE=false
+      - ENABLE_AUTO_COMMIT=true
+      - STATISTICS_INTERVAL_MS=5000
+      - SESSION_TIMEOUT_MS=6000
+      - AUTO_OFFSET_RESET=Earliest
+      - ENABLE_PARTITION_EOF=true
+      - PARTITION_ASSIGNMENT_STRATEGY=CooperativeSticky
+      - DOTNET_RUNNING_IN_CONTAINER=true
+      - ConnectionStrings=Server=host.docker.internal;Initial Catalog=Rega_UserManagement;User ID=sa;Password=P@ssw0rd#015;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
+    volumes:
+      - ./wwwroot/:/app/wwwroot/
+
+  # regasocity:
+  #   build:
+  #     context: .
+  #     dockerfile: ./RegaSocity/Dockerfile
+  #   ports:
+  #     - 4000:4000
+  #   depends_on:
+  #     - mongodb
+
+  taskmanagement:
+    container_name: taskmanagement
+    image: docker pull ahmedalaa107/taskmanagement:latest
+
+    ports:
+      - 5008:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - BOOTSTRAP_SERVER=kafka:9092
+      - GROUP_ID=taskmanagementConsumer
+      - ENABLE_AUTO_OFFSET_STORE=false
+      - ENABLE_AUTO_COMMIT=true
+      - STATISTICS_INTERVAL_MS=5000
+      - SESSION_TIMEOUT_MS=6000
+      - AUTO_OFFSET_RESET=Earliest
+      - ENABLE_PARTITION_EOF=true
+      - PARTITION_ASSIGNMENT_STRATEGY=CooperativeSticky
+      - DOTNET_RUNNING_IN_CONTAINER=true
+    volumes:
+      - ./wwwroot/:/app/wwwroot/
+  zookeeper:
+    image: bitnami/zookeeper
+    restart: always
+    ports:
+      - "2181:2181"
+    volumes:
+      - "zookeeper_data:/bitnami"
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+
+  kafka:
+    image: bitnami/kafka
+    ports:
+      - "9092:9092"
+    restart: always
+    volumes:
+      - "kafka_data:/bitnami"
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    depends_on:
+      - zookeeper
+
+volumes:
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local
