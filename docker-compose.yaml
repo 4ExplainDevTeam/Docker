@@ -2,7 +2,8 @@ version: "3.7"
 
 services:
   envoygateway:
-    build: Envoy/
+    container_name: envoygateway
+    image: docker pull ahmedalaa107/envoy:latest
     ports:
       - "9901:9901"
       - "10000:10000"
