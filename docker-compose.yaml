@@ -3,7 +3,7 @@ version: "3.7"
 services:
   envoygateway:
     container_name: envoygateway
-    image: docker pull ahmedalaa107/envoy:latest
+    image: ahmedalaa107/envoy:latest
     ports:
       - "9901:9901"
       - "10000:10000"
@@ -44,7 +44,7 @@ services:
 
   basicdata:
     container_name: basicdata
-    image: docker pull ahmedalaa107/basicdata:latest
+    image: ahmedalaa107/basicdata:latest
     ports:
       - 5002:80
     environment:
@@ -66,7 +66,7 @@ services:
 
   orghierarchy:
     container_name: orghierarchy
-    image: docker pull ahmedalaa107/orghierarchy:latest
+    image: ahmedalaa107/orghierarchy:latest
     ports:
       - 5003:80
     environment:
@@ -88,7 +88,7 @@ services:
 
   workspace:
     container_name: workspace
-    image: docker pull ahmedalaa107/workspace:latest
+    image: ahmedalaa107/workspace:latest
     ports:
       - 5004:80
     environment:
@@ -110,7 +110,7 @@ services:
 
   news:
     container_name: news
-    image: docker pull ahmedalaa107/news:latest
+    image: ahmedalaa107/news:latest
     ports:
       - 5005:80
     environment:
@@ -131,7 +131,7 @@ services:
       - ./wwwroot/:/app/wwwroot/
   committees:
     container_name: committees
-    image: docker pull ahmedalaa107/committee:latest
+    image: ahmedalaa107/committee:latest
     ports:
       - 5006:80
     environment:
@@ -153,7 +153,7 @@ services:
 
   usermanagement:
     container_name: usermanagement
-    image: docker pull ahmedalaa107/usermanagement:latest
+    image: ahmedalaa107/usermanagement:latest
     ports:
       - 5007:80
     environment:
@@ -184,7 +184,7 @@ services:
 
   taskmanagement:
     container_name: taskmanagement
-    image: docker pull ahmedalaa107/taskmanagement:latest
+    image: ahmedalaa107/taskmanagement:latest
 
     ports:
       - 5008:80
