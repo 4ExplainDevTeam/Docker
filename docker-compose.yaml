@@ -153,16 +153,14 @@ services:
 
   usermanagement:
     container_name: usermanagement
-    build:
-      context: .
-      dockerfile: ./UserManagement/Dockerfile
+    image: ahmedalaa107/usermanagement:latest
     ports:
-      - 5007:80
+      - 5006:80
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
       - BOOTSTRAP_SERVER=kafka:9092
-      - GROUP_ID=userMangementConsumer
+      - GROUP_ID=usermanagementConsumer
       - ENABLE_AUTO_OFFSET_STORE=false
       - ENABLE_AUTO_COMMIT=true
       - STATISTICS_INTERVAL_MS=5000
@@ -171,7 +169,7 @@ services:
       - ENABLE_PARTITION_EOF=true
       - PARTITION_ASSIGNMENT_STRATEGY=CooperativeSticky
       - DOTNET_RUNNING_IN_CONTAINER=true
-      - ConnectionStrings=Server=host.docker.internal;Initial Catalog=Rega_UserManagement;User ID=sa;Password=P@ssw0rd;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
+      - ConnectionStrings=Server=10.21.10.160;Initial Catalog=Rega_UserManagement;User ID=SVC_SmartView;Password=SVC@123456;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
     volumes:
       - ./wwwroot/:/app/wwwroot/
 
