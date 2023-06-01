@@ -155,7 +155,7 @@ services:
     container_name: usermanagement
     image: ahmedalaa107/usermanagement:latest
     ports:
-      - 5006:80
+      - 5007:80
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
