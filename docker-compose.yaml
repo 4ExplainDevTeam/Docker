@@ -196,52 +196,74 @@ services:
     volumes:
       - ./wwwroot/:/app/wwwroot/
 
-  # pmo:
-  #   container_name: pmo
-  #   build:
-  #     context: .
-  #     dockerfile: ./pmo/Dockerfile
-  #   ports:
-  #     - 5009:80
-  #   environment:
-  #     - ASPNETCORE_ENVIRONMENT=Development
-  #     - ASPNETCORE_URLS=http://+:80
-  #     - BOOTSTRAP_SERVER=kafka:9092
-  #     - GROUP_ID=userMangementConsumer
-  #     - ENABLE_AUTO_OFFSET_STORE=false
-  #     - ENABLE_AUTO_COMMIT=true
-  #     - STATISTICS_INTERVAL_MS=5000
-  #     - SESSION_TIMEOUT_MS=6000
-  #     - AUTO_OFFSET_RESET=Earliest
-  #     - ENABLE_PARTITION_EOF=true
-  #     - PARTITION_ASSIGNMENT_STRATEGY=CooperativeSticky
-  #     - DOTNET_RUNNING_IN_CONTAINER=true
-  #     - ConnectionStrings=Server=host.docker.internal;Initial Catalog=Rega_PMO;User ID=sa;Password=P@ssw0rd;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
-  #   volumes:
-  #     - ./wwwroot/:/app/wwwroot/
+  blog:
+    container_name: blog
+    image: ahmedalaa107/blog:latest
 
-  # blog:
-  #   build:
-  #     context: .
-  #     dockerfile: ./blog/Dockerfile
-  #   ports:
-  #     - 5002:80
-  #   environment:
-  #     - ASPNETCORE_ENVIRONMENT=Development
-  #     - ASPNETCORE_URLS=http://+:80
-  #     - BOOTSTRAP_SERVER=kafka:9092
-  #     - GROUP_ID=blogConsumer
-  #     - ENABLE_AUTO_OFFSET_STORE=false
-  #     - ENABLE_AUTO_COMMIT=true
-  #     - STATISTICS_INTERVAL_MS=5000
-  #     - SESSION_TIMEOUT_MS=6000
-  #     - AUTO_OFFSET_RESET=Earliest
-  #     - ENABLE_PARTITION_EOF=true
-  #     - PARTITION_ASSIGNMENT_STRATEGY=CooperativeSticky
-  #     - DOTNET_RUNNING_IN_CONTAINER=true
-  #     - ConnectionStrings=Server=host.docker.internal;Initial Catalog=Rega_blogs;User ID=sa;Password=P@ssw0rd#015;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
-  #   volumes:
-  #     - ./wwwroot/:/app/wwwroot/
+    ports:
+      - 5009:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - BOOTSTRAP_SERVER=kafka:9092
+      - GROUP_ID=blogConsumer
+      - ENABLE_AUTO_OFFSET_STORE=false
+      - ENABLE_AUTO_COMMIT=true
+      - STATISTICS_INTERVAL_MS=5000
+      - SESSION_TIMEOUT_MS=6000
+      - AUTO_OFFSET_RESET=Earliest
+      - ENABLE_PARTITION_EOF=true
+      - PARTITION_ASSIGNMENT_STRATEGY=CooperativeSticky
+      - DOTNET_RUNNING_IN_CONTAINER=true
+      - ConnectionStrings=Server=10.21.10.160;Initial Catalog=Rega_Blog;User ID=SVC_SmartView;Password=SVC@123456;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
+    volumes:
+      - ./wwwroot/:/app/wwwroot/
+
+  ideabank:
+    container_name: ideabank
+    image: ahmedalaa107/ideabank:latest
+
+    ports:
+      - 5010:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - BOOTSTRAP_SERVER=kafka:9092
+      - GROUP_ID=ideabankConsumer
+      - ENABLE_AUTO_OFFSET_STORE=false
+      - ENABLE_AUTO_COMMIT=true
+      - STATISTICS_INTERVAL_MS=5000
+      - SESSION_TIMEOUT_MS=6000
+      - AUTO_OFFSET_RESET=Earliest
+      - ENABLE_PARTITION_EOF=true
+      - PARTITION_ASSIGNMENT_STRATEGY=CooperativeSticky
+      - DOTNET_RUNNING_IN_CONTAINER=true
+      - ConnectionStrings=Server=10.21.10.160;Initial Catalog=Rega_IdeaBank;User ID=SVC_SmartView;Password=SVC@123456;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
+    volumes:
+      - ./wwwroot/:/app/wwwroot/
+
+  challenges:
+    container_name: challenges
+    image: ahmedalaa107/challenges:latest
+
+    ports:
+      - 5011:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - BOOTSTRAP_SERVER=kafka:9092
+      - GROUP_ID=challengeConsumer
+      - ENABLE_AUTO_OFFSET_STORE=false
+      - ENABLE_AUTO_COMMIT=true
+      - STATISTICS_INTERVAL_MS=5000
+      - SESSION_TIMEOUT_MS=6000
+      - AUTO_OFFSET_RESET=Earliest
+      - ENABLE_PARTITION_EOF=true
+      - PARTITION_ASSIGNMENT_STRATEGY=CooperativeSticky
+      - DOTNET_RUNNING_IN_CONTAINER=true
+      - ConnectionStrings=Server=10.21.10.160;Initial Catalog=Rega_Challenge;User ID=SVC_SmartView;Password=SVC@123456;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
+    volumes:
+      - ./wwwroot/:/app/wwwroot/
 
   zookeeper:
     image: bitnami/zookeeper
