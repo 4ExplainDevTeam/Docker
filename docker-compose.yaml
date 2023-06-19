@@ -215,7 +215,7 @@ services:
       - ENABLE_PARTITION_EOF=true
       - PARTITION_ASSIGNMENT_STRATEGY=CooperativeSticky
       - DOTNET_RUNNING_IN_CONTAINER=true
-      - ConnectionStrings=Server=10.21.10.160;Initial Catalog=Rega_Blog;User ID=SVC_SmartView;Password=SVC@123456;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
+      - ConnectionStrings=Server=10.21.10.160;Initial Catalog=Rega_Blogs;User ID=SVC_SmartView;Password=SVC@123456;Integrated Security=false;MultipleActiveResultSets=True;TrustServerCertificate=True;
     volumes:
       - ./wwwroot/:/app/wwwroot/
 
